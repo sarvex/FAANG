@@ -40,7 +40,7 @@ def print_singly_linked_list(node, sep, fptr):
 #
 def insertNodeAtTail(head, data):
     cur = head
-    if head == None:
+    if head is None:
         return SinglyLinkedListNode(data)
     while cur.next != None:
         cur = cur.next
@@ -49,18 +49,15 @@ def insertNodeAtTail(head, data):
     
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        llist_count = int(input())
 
-    llist_count = int(input())
+        llist = SinglyLinkedList()
 
-    llist = SinglyLinkedList()
+        for _ in range(llist_count):
+            llist_item = int(input())
+            llist_head = insertNodeAtTail(llist.head, llist_item)
+            llist.head = llist_head
 
-    for i in range(llist_count):
-        llist_item = int(input())
-        llist_head = insertNodeAtTail(llist.head, llist_item)
-        llist.head = llist_head
-
-    print_singly_linked_list(llist.head, '\n', fptr)
-    fptr.write('\n')
-
-    fptr.close()
+        print_singly_linked_list(llist.head, '\n', fptr)
+        fptr.write('\n')

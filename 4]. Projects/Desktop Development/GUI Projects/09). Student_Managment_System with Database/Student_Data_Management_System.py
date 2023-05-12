@@ -399,7 +399,7 @@ def deletestudent():
     strr = 'delete from studentdata1 where id = %s'
     mycursor.execute(strr, (pp))
     con.commit()
-    messagebox.showinfo('Notification', 'Id {} deleted successfully...'.format(id))
+    messagebox.showinfo('Notification', f'Id {id} deleted successfully...')
     strr = 'select * from studentdata1'
     mycursor.execute(strr)
     datas = mycursor.fetchall()
@@ -559,9 +559,9 @@ def exportstudent():
 
     dd = ['ID', 'Name', 'Mobile No.', 'Email', 'Address', 'Gender', 'D.O.B', 'Added Date', 'Added Time']
     df = pandas.DataFrame(list(zip(id, name, mobile, email, address, gender, dob, addeddate, addedtime)), columns=dd)
-    paths = r'{}.csv'.format(ff)
+    paths = f'{ff}.csv'
     df.to_csv(paths, index=False)
-    messagebox.showinfo('Notification', 'Student Data is saved {}'.format(paths))
+    messagebox.showinfo('Notification', f'Student Data is saved {paths}')
 
 def exitstudent():
     res = messagebox.askyesnocancel("Notification", "Do you want to Exit ?")

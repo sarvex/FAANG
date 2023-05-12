@@ -12,9 +12,7 @@ class Graph:
     # Search function
 
     def find(self, parent, i):
-        if parent[i] == i:
-            return i
-        return self.find(parent, parent[i])
+        return i if parent[i] == i else self.find(parent, parent[i])
 
     def apply_union(self, parent, rank, x, y):
         xroot = self.find(parent, x)
@@ -43,7 +41,7 @@ class Graph:
             x = self.find(parent, u)
             y = self.find(parent, v)
             if x != y:
-                e = e + 1
+                e += 1
                 result.append([u, v, w])
                 self.apply_union(parent, rank, x, y)
         for u, v, weight in result:

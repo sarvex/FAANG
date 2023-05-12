@@ -23,18 +23,17 @@ class Calc():
         self.result = False
 
     def numberEnter(self, num):
-            self.result = False
-            firstnum = txtDisplay.get()
-            secondnum = str(num)
-            if self.input_value:
-                self.current = secondnum
-                self.input_value = False
-            else:
-                if secondnum == '.':
-                    if secondnum in firstnum:
-                        return
-                self.current = firstnum + secondnum
-            self.display(self.current)
+        self.result = False
+        firstnum = txtDisplay.get()
+        secondnum = str(num)
+        if self.input_value:
+            self.current = secondnum
+            self.input_value = False
+        elif secondnum == '.' and secondnum in firstnum:
+            return
+        else:
+            self.current = firstnum + secondnum
+        self.display(self.current)
 
     def sum_of_total(self):
             self.result = True
@@ -49,19 +48,19 @@ class Calc():
             txtDisplay.insert(0, value)
 
     def valid_function(self):
-            if self.op == "add":
-                self.total += self.current
-            if self.op == "sub":
-                self.total -= self.current
-            if self.op == "multi":
-                self.total *= self.current
-            if self.op == "divide":
-                self.total /= self.current
-            if self.op == "mod":
-                self.total %= self.current
-            self.input_value = True
-            self.check_sum = False
-            self.display(self.total)
+        if self.op == "add":
+            self.total += self.current
+        elif self.op == "divide":
+            self.total /= self.current
+        elif self.op == "mod":
+            self.total %= self.current
+        elif self.op == "multi":
+            self.total *= self.current
+        elif self.op == "sub":
+            self.total -= self.current
+        self.input_value = True
+        self.check_sum = False
+        self.display(self.total)
 
     def operation(self, op):
             self.current = float(self.current)
@@ -416,10 +415,7 @@ def help():
 def rate():
     print("Rate us , Please!")
     val = tmsg.askquestion("How was your experience......."," was your experience Good ")
-    if val == "yes":
-        msg = "Greate!  Rate us Please."
-    else:
-        msg = "Tell us what went wrong"
+    msg = "Greate!  Rate us Please." if val == "yes" else "Tell us what went wrong"
     tmsg.showinfo("Experience",msg)
 
 def about():

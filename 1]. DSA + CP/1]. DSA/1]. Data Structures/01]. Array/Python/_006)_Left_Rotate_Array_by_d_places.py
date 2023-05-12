@@ -4,23 +4,22 @@ d = 3
 #ans = [40,50,10,20,30]
 #left rotate by 3
 
-# method 2 slicing 
-print(l[d:]+l[0:d])
+# method 2 slicing
+print(l[d:] + l[:d])
 
 l = [10,20,30,40,50]
 d = 3
 
 #method 3
-for i in range(d):
-    l.append(l.pop(0))
+l.extend(l.pop(0) for _ in range(d))
 print(l)
 
 l = [10,20,30,40,50]
 d = 3
 
 # method4
-n = len(l) 
-for k in range(d):
+n = len(l)
+for _ in range(d):
     temp = l[0]
     for i in range(n-1):
         l[i] = l[i+1]

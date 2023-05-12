@@ -24,8 +24,7 @@ def get_histogram(image, bins):
 def cumsum(a):
     a = iter(a)
     b = [next(a)]
-    for i in a:
-        b.append(b[-1] + i)
+    b.extend(b[-1] + i for i in a)
     return np.array(b)
 
 

@@ -22,14 +22,11 @@ def aVeryBigSum(ar):
     return sum(ar)
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        ar_count = int(input().strip())
 
-    ar_count = int(input().strip())
+        ar = list(map(int, input().rstrip().split()))
 
-    ar = list(map(int, input().rstrip().split()))
+        result = aVeryBigSum(ar)
 
-    result = aVeryBigSum(ar)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+        fptr.write(str(result) + '\n')

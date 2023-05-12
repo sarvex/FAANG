@@ -4,7 +4,7 @@ class Solution:
         si = pi = 0
         save_si, save_pi = None, None
         while si < sn:
-            if pi < pn and (p[pi] == '?' or p[pi] == s[si]):
+            if pi < pn and p[pi] in ['?', s[si]]:
                 si += 1
                 pi += 1
             elif pi < pn and p[pi] == '*':

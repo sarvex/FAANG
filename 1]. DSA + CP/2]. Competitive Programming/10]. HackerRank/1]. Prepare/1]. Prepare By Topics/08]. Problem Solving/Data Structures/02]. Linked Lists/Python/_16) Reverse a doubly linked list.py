@@ -57,27 +57,22 @@ def reverse(head):
     if not head:
         return head
     head.next, head.prev = head.prev, head.next
-    if not head.prev:
-        return head
-    return reverse(head.prev)
+    return head if not head.prev else reverse(head.prev)
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        t = int(input())
 
-    t = int(input())
+        for _ in range(t):
+            llist_count = int(input())
 
-    for t_itr in range(t):
-        llist_count = int(input())
+            llist = DoublyLinkedList()
 
-        llist = DoublyLinkedList()
+            for _ in range(llist_count):
+                llist_item = int(input())
+                llist.insert_node(llist_item)
 
-        for _ in range(llist_count):
-            llist_item = int(input())
-            llist.insert_node(llist_item)
+            llist1 = reverse(llist.head)
 
-        llist1 = reverse(llist.head)
-
-        print_doubly_linked_list(llist1, ' ', fptr)
-        fptr.write('\n')
-
-    fptr.close()
+            print_doubly_linked_list(llist1, ' ', fptr)
+            fptr.write('\n')

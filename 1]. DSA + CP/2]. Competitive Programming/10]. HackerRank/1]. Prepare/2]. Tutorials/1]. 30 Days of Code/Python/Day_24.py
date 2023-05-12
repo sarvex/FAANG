@@ -6,17 +6,17 @@ class Node:
         self.next = None 
 class Solution: 
     def insert(self,head,data):
-            p = Node(data)           
-            if head==None:
-                head=p
-            elif head.next==None:
-                head.next=p
-            else:
-                start=head
-                while(start.next!=None):
-                    start=start.next
-                start.next=p
-            return head  
+        p = Node(data)
+        if head is None:
+            head=p
+        elif head.next is None:
+            head.next=p
+        else:
+            start=head
+            while(start.next!=None):
+                start=start.next
+            start.next=p
+        return head  
     def display(self,head):
         current = head
         while current:
@@ -25,7 +25,7 @@ class Solution:
 
     def removeDuplicates(self,head):
         #Write your code here
-        if head==None:
+        if head is None:
             return head
         fptr = head.next
         sptr = head
@@ -44,9 +44,9 @@ class Solution:
 mylist= Solution()
 T=int(input())
 head=None
-for i in range(T):
+for _ in range(T):
     data=int(input())
-    head=mylist.insert(head,data)    
+    head=mylist.insert(head,data)
 head=mylist.removeDuplicates(head)
 mylist.display(head); 
 

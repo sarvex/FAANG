@@ -29,16 +29,13 @@ def appendAndDelete(s, t, k):
     return "No"
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        s = input()
 
-    s = input()
+        t = input()
 
-    t = input()
+        k = int(input())
 
-    k = int(input())
+        result = appendAndDelete(s, t, k)
 
-    result = appendAndDelete(s, t, k)
-
-    fptr.write(result + '\n')
-
-    fptr.close()
+        fptr.write(result + '\n')

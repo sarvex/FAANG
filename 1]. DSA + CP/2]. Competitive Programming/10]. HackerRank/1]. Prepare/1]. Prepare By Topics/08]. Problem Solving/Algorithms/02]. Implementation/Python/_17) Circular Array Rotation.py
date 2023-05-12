@@ -13,37 +13,30 @@ from collections import deque
 
 # Complete the circularArrayRotation function below.
 def circularArrayRotation(a, k, queries):
-    items = deque(a) 
+    items = deque(a)
     items.rotate(k)
-    ret_list = []
-    for q in queries:
-        #print(items[q])
-        ret_list.append(items[q])
-    return ret_list
+    return [items[q] for q in queries]
 
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        nkq = input().split()
 
-    nkq = input().split()
+        n = int(nkq[0])
 
-    n = int(nkq[0])
+        k = int(nkq[1])
 
-    k = int(nkq[1])
+        q = int(nkq[2])
 
-    q = int(nkq[2])
+        a = list(map(int, input().rstrip().split()))
 
-    a = list(map(int, input().rstrip().split()))
+        queries = []
 
-    queries = []
+        for _ in range(q):
+            queries_item = int(input())
+            queries.append(queries_item)
 
-    for _ in range(q):
-        queries_item = int(input())
-        queries.append(queries_item)
+        result = circularArrayRotation(a, k, queries)
 
-    result = circularArrayRotation(a, k, queries)
-
-    fptr.write('\n'.join(map(str, result)))
-    fptr.write('\n')
-
-    fptr.close()
+        fptr.write('\n'.join(map(str, result)))
+        fptr.write('\n')

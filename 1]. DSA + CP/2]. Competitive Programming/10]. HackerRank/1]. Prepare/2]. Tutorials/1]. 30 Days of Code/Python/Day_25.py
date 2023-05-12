@@ -3,7 +3,7 @@
 from itertools import count, islice
 
 n = int(input())
-for i in range(n):
+for _ in range(n):
     x, prime = int(input()), True
     sq = int(x**0.5)-1
     if x<2: 

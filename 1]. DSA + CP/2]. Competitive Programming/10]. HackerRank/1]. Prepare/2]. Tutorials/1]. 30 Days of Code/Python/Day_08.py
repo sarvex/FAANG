@@ -4,7 +4,7 @@
 n = int(input())
 d = {}
 
-for i in range(n):
+for _ in range(n):
     x = input().split()
     d[x[0]] = x[1]
 

@@ -38,8 +38,7 @@ visited_and_distance = [[0, 0]]
 for i in range(num_of_vertices-1):
     visited_and_distance.append([0, sys.maxsize])
 
-for vertex in range(num_of_vertices):
-
+for _ in range(num_of_vertices):
     # Find next vertex to be visited
     to_visit = to_be_visited()
     for neighbor_index in range(num_of_vertices):
@@ -49,9 +48,9 @@ for vertex in range(num_of_vertices):
                 visited_and_distance[neighbor_index][0] == 0:
             new_distance = visited_and_distance[to_visit][1] \
                 + edges[to_visit][neighbor_index]
-            if visited_and_distance[neighbor_index][1] > new_distance:
-                visited_and_distance[neighbor_index][1] = new_distance
-        
+            visited_and_distance[neighbor_index][1] = min(
+                visited_and_distance[neighbor_index][1], new_distance
+            )
         visited_and_distance[to_visit][0] = 1
 
 i = 0

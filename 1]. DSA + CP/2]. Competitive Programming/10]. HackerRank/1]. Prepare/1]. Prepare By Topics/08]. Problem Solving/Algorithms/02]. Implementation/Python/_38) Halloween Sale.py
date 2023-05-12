@@ -31,20 +31,17 @@ def howManyGames(p, d, m, s):
     
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        first_multiple_input = input().rstrip().split()
 
-    first_multiple_input = input().rstrip().split()
+        p = int(first_multiple_input[0])
 
-    p = int(first_multiple_input[0])
+        d = int(first_multiple_input[1])
 
-    d = int(first_multiple_input[1])
+        m = int(first_multiple_input[2])
 
-    m = int(first_multiple_input[2])
+        s = int(first_multiple_input[3])
 
-    s = int(first_multiple_input[3])
+        answer = howManyGames(p, d, m, s)
 
-    answer = howManyGames(p, d, m, s)
-
-    fptr.write(str(answer) + '\n')
-
-    fptr.close()
+        fptr.write(str(answer) + '\n')

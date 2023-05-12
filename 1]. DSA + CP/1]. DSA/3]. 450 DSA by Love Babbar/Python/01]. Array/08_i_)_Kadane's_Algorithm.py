@@ -66,9 +66,7 @@ def max_sub_array(arr):
         current_max += i
         if current_max > maximum_so_far:
             maximum_so_far = current_max
-        if current_max < 0:
-            current_max = 0
-
+        current_max = max(current_max, 0)
     return maximum_so_far
 
 

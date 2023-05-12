@@ -35,16 +35,13 @@ engine.setProperty('voice',voices[1].id)
 #News based Function
 def news():
      try:
-      main_url = 'http://newsapi.org/v2/top-headlines?sources=the-times-of-india&apiKey=1e11213d2b9844e4948feee117eaec89'
-      main_page = requests.get(main_url).json()
-      articles = main_page["articles"]
-      head = []
-      day = ["first","second","third","fourth","fifth","sixth","seventh"]
-      for ar in articles:
-          head.append(ar['title'])
-
-      for i in range(len(day)):
-          speak(f"today's {day[i]} news is:{head[i]}")
+          main_url = 'http://newsapi.org/v2/top-headlines?sources=the-times-of-india&apiKey=1e11213d2b9844e4948feee117eaec89'
+          main_page = requests.get(main_url).json()
+          articles = main_page["articles"]
+          day = ["first","second","third","fourth","fifth","sixth","seventh"]
+          head = [ar['title'] for ar in articles]
+          for i in range(len(day)):
+              speak(f"today's {day[i]} news is:{head[i]}")
 
      except Exception as e:
               speak("No Internet connection")
@@ -59,22 +56,22 @@ def Weather_Report(cityname):
 
 
      if json_data['cod'] == '404':
-         print("Invalid city:{}, Please check your city name".format(cityname))
+          print(f"Invalid city:{cityname}, Please check your city name")
      else:
-         # Create Variable to store and display data
-         temp_city = ((json_data['main']['temp']) - 273.15)
-         weather_desc = json_data['weather'][0]['description']
-         hmdt = json_data['main']['humidity']
-         wind_spd = json_data['wind']['speed']
-         date_time = datetime.datetime.now().strftime("%d %b %Y | %I:%M:%S %p")
-         t = round(temp_city,2)
-         print("-------------------------------------------------------------------")
-         print("Weather Status for -{} || {}".format(cityname.upper(), date_time))
-         print("-------------------------------------------------------------------")
-         speak("Current temperature is "+str(t))
-         speak("Current Weather desc is "+weather_desc)
-         speak("Current Humidity is "+str(hmdt)+'%')
-         speak("Current Wind Speed is "+str(wind_spd)+'kmph')
+          # Create Variable to store and display data
+          temp_city = ((json_data['main']['temp']) - 273.15)
+          weather_desc = json_data['weather'][0]['description']
+          hmdt = json_data['main']['humidity']
+          wind_spd = json_data['wind']['speed']
+          date_time = datetime.datetime.now().strftime("%d %b %Y | %I:%M:%S %p")
+          t = round(temp_city,2)
+          print("-------------------------------------------------------------------")
+          print(f"Weather Status for -{cityname.upper()} || {date_time}")
+          print("-------------------------------------------------------------------")
+          speak(f"Current temperature is {str(t)}")
+          speak(f"Current Weather desc is {weather_desc}")
+          speak(f"Current Humidity is {str(hmdt)}%")
+          speak(f"Current Wind Speed is {str(wind_spd)}kmph")
 
 #Function for Speak audio
 def speak(audio):
@@ -84,24 +81,24 @@ def speak(audio):
 
 #Function for Greeting:-
 def wishMe():
-    speak("Intialzing Alexa")
-    time.sleep(2)
-    hour =int(datetime.datetime.now().hour)
-    if hour>=0 and hour<12:
-        speak("Good Morning Mr. Akash Khandelwal")
-    elif hour>=12 and hour<18:
-        speak("Good Afternoon Mr. Akash Khandelwal")
+     speak("Intialzing Alexa")
+     time.sleep(2)
+     hour = datetime.datetime.now().hour
+     if hour>=0 and hour<12:
+         speak("Good Morning Mr. Akash Khandelwal")
+     elif hour>=12 and hour<18:
+         speak("Good Afternoon Mr. Akash Khandelwal")
 
-    else:
+     else:
 
-        speak("Good Evening Mr. Akash Khandelwal")
+         speak("Good Evening Mr. Akash Khandelwal")
 
-    date_time2 = datetime.datetime.now().strftime("%d %b %Y %I:%M %p")
-    time.sleep(2)
-    speak("Its "+date_time2)
-    time.sleep(2)
-    speak("I am Alexa Sir Your Virtual Assisstant 2.2.0 Please Tell me How may i help You")
-    time.sleep(2)
+     date_time2 = datetime.datetime.now().strftime("%d %b %Y %I:%M %p")
+     time.sleep(2)
+     speak(f"Its {date_time2}")
+     time.sleep(2)
+     speak("I am Alexa Sir Your Virtual Assisstant 2.2.0 Please Tell me How may i help You")
+     time.sleep(2)
 
 
 #Function for Taking command From User
@@ -145,20 +142,20 @@ def check_password():
 
 #Main Function
 if __name__ == '__main__':
-         ch = int(check_password())
-         if ch == 1:
-            wishMe()
-            while True:
+     ch = int(check_password())
+     if ch == 1:
+          wishMe()
+          while True:
                query = takeCommand().lower()
                print(query)
 
                if 'wikipedia' in query:
-                 speak('Searching Wikipedia....')
-                 query = query.replace("wikipediaa","")
-                 results = wikipedia.summary(query,sentences=3)
-                 speak("According to Wikipedia")
-                 print(results)
-                 speak(results)
+                    speak('Searching Wikipedia....')
+                    query = query.replace("wikipediaa","")
+                    results = wikipedia.summary(query,sentences=3)
+                    speak("According to Wikipedia")
+                    print(results)
+                    speak(results)
 
                elif 'switch the window' in query:
                    pyautogui.keyDown("alt")
@@ -196,8 +193,8 @@ if __name__ == '__main__':
                     time.sleep(10)
 
                elif 'the time' in query or 'what the time is it' in query:
-                   date_time2 = datetime.datetime.now().strftime("%I:%M %p")
-                   speak("Its"+date_time2)
+                    date_time2 = datetime.datetime.now().strftime("%I:%M %p")
+                    speak(f"Its{date_time2}")
 
                elif 'open code' in query:
                     codepath = "C:\\Users\\Dell\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
@@ -275,8 +272,6 @@ if __name__ == '__main__':
                     ip = get('https://api.ipify.org').text
                     speak(f"your ip address is{ip}")
 
-                # to close any application
-
                elif 'close excel' in query:
                    speak("okay sir,closing excel")
                    os.system("taskkill /f /im EXCEL.exe")
@@ -315,11 +310,9 @@ if __name__ == '__main__':
                    speak("okay sir,closing chrome")
                    os.system("taskkill /f /im chrome.exe")
 
-                # to find a joke
                elif 'tell me a joke' in query:
                     joke = pyjokes.get_joke()
                     speak(joke)
-               #Some Special Command
                elif "shut down the system" in query:
                     os.system("shutdown /s /t 5")
 
@@ -330,7 +323,6 @@ if __name__ == '__main__':
                    os.system("rundll32.exe powrprof.dll,SetSuspendState 0,1,0")
 
 
-                # Weather API
                elif "tell me weather report" in query:
                       speak("For Which City")
                       t = takeCommand()
@@ -343,13 +335,10 @@ if __name__ == '__main__':
                      time.sleep(5)
 
                elif "i have mood off typing" in query:
-                     speak("Can I open Rapid Typing for you")
-                     t = takeCommand().lower()
-                     if 'ok open' in t:
+                    speak("Can I open Rapid Typing for you")
+                    t = takeCommand().lower()
+                    if 'ok open' in t:
                          os.startfile(path5)
-                     else:
-                          pass
-
                elif "tell me news" in query:
                      speak("Please wait sir,Fetching latest news from times of india")
                      news()
@@ -379,19 +368,16 @@ if __name__ == '__main__':
                          speak("tell me only time")
 
                elif 'write a note' in query:
-                   speak("waht should i write,sir")
-                   note = takeCommand()
-                   file = open("jarvis.txt",'w')
-                   speak("sir,Should i include date and time")
-                   sdt = takeCommand().lower()
-                   if 'yes' in sdt or 'sure' in sdt:
-                       date_time = datetime.datetime.now().strftime("%d %b %Y | %I:%M:%S %p")
-                       file.write(date_time)
-                       file.write(" :-")
-                       file.write(note)
-
-                   else:
-                       file.write(note)
+                    speak("waht should i write,sir")
+                    note = takeCommand()
+                    file = open("jarvis.txt",'w')
+                    speak("sir,Should i include date and time")
+                    sdt = takeCommand().lower()
+                    if 'yes' in sdt or 'sure' in sdt:
+                         date_time = datetime.datetime.now().strftime("%d %b %Y | %I:%M:%S %p")
+                         file.write(date_time)
+                         file.write(" :-")
+                    file.write(note)
 
                elif 'calculate' in query or 'calculation' in query:
                     client = wolframalpha.Client('WTXR73-743UE5RY9H')
@@ -406,11 +392,11 @@ if __name__ == '__main__':
                          print("What did you mean")
 
                elif 'Take a Screenshot' in query:
-                   myScreenShot = pyautogui.screenshot()
-                   name = random.randint(1,9000)
-                   screenshotname = str(name) + "screenshot"
-                   myScreenShot.save(f"C:\\Users\\Dell\\Desktop\\Screenshot\\{screenshotname}.png")
-                   speak("Screenshot taken Successfully")
+                    myScreenShot = pyautogui.screenshot()
+                    name = random.randint(1,9000)
+                    screenshotname = f"{name}screenshot"
+                    myScreenShot.save(f"C:\\Users\\Dell\\Desktop\\Screenshot\\{screenshotname}.png")
+                    speak("Screenshot taken Successfully")
 
                elif 'are you stupid' in query:
                    speak("I am not Stupid I think you are stupid")

@@ -17,14 +17,11 @@ def pageCount(n, p):
         return min(p // 2, n // 2 - p // 2)    
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        n = int(input())
 
-    n = int(input())
+        p = int(input())
 
-    p = int(input())
+        result = pageCount(n, p)
 
-    result = pageCount(n, p)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+        fptr.write(str(result) + '\n')

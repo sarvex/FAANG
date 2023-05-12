@@ -73,23 +73,20 @@ def getNode(head, positionFromTail):
     
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        tests = int(input())
 
-    tests = int(input())
+        for _ in range(tests):
+            llist_count = int(input())
 
-    for tests_itr in range(tests):
-        llist_count = int(input())
+            llist = SinglyLinkedList()
 
-        llist = SinglyLinkedList()
+            for _ in range(llist_count):
+                llist_item = int(input())
+                llist.insert_node(llist_item)
 
-        for _ in range(llist_count):
-            llist_item = int(input())
-            llist.insert_node(llist_item)
+            position = int(input())
 
-        position = int(input())
+            result = getNode(llist.head, position)
 
-        result = getNode(llist.head, position)
-
-        fptr.write(str(result) + '\n')
-
-    fptr.close()
+            fptr.write(str(result) + '\n')

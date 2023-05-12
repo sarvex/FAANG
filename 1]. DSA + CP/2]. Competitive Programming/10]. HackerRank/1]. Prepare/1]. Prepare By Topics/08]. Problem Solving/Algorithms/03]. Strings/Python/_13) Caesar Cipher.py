@@ -22,38 +22,36 @@ import sys
 def caesarCipher(s, k):
     k %= 26
     newString = ''
-    
+
     for i in s:
         asciiValue = ord(i)
         # Uppercase alphabets
-        if asciiValue >= 97 and asciiValue <= 122:
-            if asciiValue + k > 122:
-                newString += chr(96 + asciiValue - 122 + k)
-            else:
-                newString += chr(asciiValue + k)
-        # Lowercase alphabets
+        if asciiValue >= 97 and asciiValue <= 122 and asciiValue + k > 122:
+            newString += chr(96 + asciiValue - 122 + k)
+        elif (
+            asciiValue >= 97
+            and asciiValue <= 122
+            or asciiValue >= 65
+            and asciiValue <= 90
+            and asciiValue + k <= 90
+        ):
+            newString += chr(asciiValue + k)
         elif asciiValue >= 65 and asciiValue <= 90:
-            if asciiValue + k > 90:
-                newString += chr(64 + asciiValue - 90 + k)
-            else:
-                newString += chr(asciiValue + k)
+            newString += chr(64 + asciiValue - 90 + k)
         else:
             newString += i        
-                
+
     return newString
     
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        n = int(input().strip())
 
-    n = int(input().strip())
+        s = input()
 
-    s = input()
+        k = int(input().strip())
 
-    k = int(input().strip())
+        result = caesarCipher(s, k)
 
-    result = caesarCipher(s, k)
-
-    fptr.write(result + '\n')
-
-    fptr.close()
+        fptr.write(result + '\n')

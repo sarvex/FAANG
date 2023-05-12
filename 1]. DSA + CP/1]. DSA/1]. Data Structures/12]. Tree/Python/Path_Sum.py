@@ -11,9 +11,9 @@ class TreeNode:
 
 class Solution:
     def hasPathSum(self, root, targetSum) -> bool:
-        if (root == None):
+        if root is None:
             return False
-        elif (root.left == None) and (root.right == None):
+        elif root.left is None and root.right is None:
             return targetSum == root.val
         else:
             return self.hasPathSum(root.left, targetSum - root.val) or self.hasPathSum(root.right, targetSum - root.val)

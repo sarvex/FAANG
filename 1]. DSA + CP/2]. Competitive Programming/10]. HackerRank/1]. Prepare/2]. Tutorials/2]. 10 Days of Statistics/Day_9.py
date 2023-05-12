@@ -4,16 +4,13 @@ m,n = [int(i) for i in input().strip().split(' ')]
 X = []
 Y = []
 
-for i in range(n):
+for _ in range(n):
     data = input().strip().split(' ')
     X.append(data[:m])
     Y.append(data[m:])
 
 q = int(input().strip())
-X_new = []
-
-for x in range(q):
-    X_new.append(input().strip().split(' '))
+X_new = [input().strip().split(' ') for _ in range(q)]
 X = np.array(X,float)
 Y = np.array(Y,float)
 X_new = np.array(X_new,float)

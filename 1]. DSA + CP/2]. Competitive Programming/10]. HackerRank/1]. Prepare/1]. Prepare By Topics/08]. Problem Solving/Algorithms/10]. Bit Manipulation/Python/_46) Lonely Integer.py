@@ -30,14 +30,11 @@ def lonelyinteger(a):
             return i
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        n = int(input().strip())
 
-    n = int(input().strip())
+        a = list(map(int, input().rstrip().split()))
 
-    a = list(map(int, input().rstrip().split()))
+        result = lonelyinteger(a)
 
-    result = lonelyinteger(a)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+        fptr.write(str(result) + '\n')

@@ -18,22 +18,15 @@ import sys
 #
 
 def theLoveLetterMystery(s):
-    answer = 0
-    for i in range(len(s) // 2):
-        diff = abs(ord(s[i]) - ord(s[len(s) - i - 1]))
-        answer += diff
-    return answer
+    return sum(abs(ord(s[i]) - ord(s[len(s) - i - 1])) for i in range(len(s) // 2))
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        q = int(input().strip())
 
-    q = int(input().strip())
+        for _ in range(q):
+            s = input()
 
-    for q_itr in range(q):
-        s = input()
+            result = theLoveLetterMystery(s)
 
-        result = theLoveLetterMystery(s)
-
-        fptr.write(str(result) + '\n')
-
-    fptr.close()
+            fptr.write(str(result) + '\n')

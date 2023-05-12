@@ -22,7 +22,7 @@ def verify(index, target):
         print("Target", target, "not in list")
 
 
-array = [x for x in range(1, 11)]
+array = list(range(1, 11))
 print("Input array:", array)
 
 verify(binary_search(array, 6), 6)

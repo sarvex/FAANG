@@ -89,7 +89,7 @@ class Register:
     def register_data(self):
         if self.txt_fname.get()=='' or self.txt_contact.get()=='' or self.txt_email.get()=='' or self.cmb_quest.get()=='Select' or self.txt_answer.get()=='' or self.txt_password.get()=='' or self.txt_cpassword.get()=='':
             messagebox.showerror("Error", "All fields are required...", parent=self.root)
-        
+
         elif self.txt_password.get() != self.txt_cpassword.get():
             messagebox.showerror("Error", 'Password and Confirm Password should be same', parent=self.root)
 
@@ -102,9 +102,7 @@ class Register:
                 cur = con.cursor()
                 cur.execute("select * from register2 where email=%s", self.txt_email.get())
                 row = cur.fetchone()
-                if row != None:
-                    messagebox.showerror("Error", 'User already Exist...\n Please try with another Email.', parent=self.root)
-                else:
+                if row is None:
                     cur.execute("insert into register2 (f_name, l_name, contact, email, question, answer, password) values(%s, %s, %s, %s, %s, %s, %s)",
                                 (
                                     self.txt_fname.get(),
@@ -119,6 +117,8 @@ class Register:
                     con.close()
                     self.clear()
                     messagebox.showinfo("Success", "Register Successful", parent=self.root)
+                else:
+                    messagebox.showerror("Error", 'User already Exist...\n Please try with another Email.', parent=self.root)
             except Exception as e:
                 messagebox.showerror("Error", f'Error due to: {str(e)}', parent=self.root)
 

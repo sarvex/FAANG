@@ -4,11 +4,7 @@ import sys
 includefiles = ["student.ico"]
 excludes = []
 packages = []
-base = None
-
-if sys.platform == 'win32':
-    base = 'Win32GUI'
-
+base = 'Win32GUI' if sys.platform == 'win32' else None
 shortcut_table = [
     ("DesktopShortcut", #Shortcut
      "DesktopFolder",   #Directory_

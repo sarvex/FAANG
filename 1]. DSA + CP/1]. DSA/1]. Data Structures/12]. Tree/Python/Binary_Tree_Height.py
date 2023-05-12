@@ -8,7 +8,7 @@ class Node:
 
 class BinaryTree:
     def height(self, root):
-        if root == None:
+        if root is None:
             return 0
         else:
             return max(self.height(root.left), self.height(root.right)) + 1

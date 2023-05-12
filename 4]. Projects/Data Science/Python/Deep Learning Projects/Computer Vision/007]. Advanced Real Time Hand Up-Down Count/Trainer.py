@@ -27,16 +27,16 @@ while True:
 
         # Check for the dumbbell curls
         color = (255, 0, 255)
-        if per == 100:
-            color = (0, 255, 0)
-            if dir == 0:
-                count += 0.5
-                dir = 1
         if per == 0:
             color = (0, 255, 0)
             if dir == 1:
                 count += 0.5
                 dir = 0
+        elif per == 100:
+            color = (0, 255, 0)
+            if dir == 0:
+                count += 0.5
+                dir = 1
         print(count)
 
         # Draw Bar

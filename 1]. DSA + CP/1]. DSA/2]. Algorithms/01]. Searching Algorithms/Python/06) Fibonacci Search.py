@@ -37,11 +37,7 @@ def fibonacci_search(array, target):
             return i
 
     # comparing the last element with target
-    if fibm1 and len(array) - 1 == target:
-        return len(array) - 1
-
-    # element not found
-    return None
+    return len(array) - 1 if fibm1 and len(array) - 1 == target else None
 
 
 def verify(index, target):
@@ -51,7 +47,7 @@ def verify(index, target):
         print("Target", target, "not in list")
 
 
-array = [x for x in range(1, 51)]
+array = list(range(1, 51))
 print("Input array:", array)
 
 verify(fibonacci_search(array, 30), 30)

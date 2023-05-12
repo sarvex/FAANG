@@ -18,20 +18,17 @@ def squares(a, b):
 
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        q = int(input())
 
-    q = int(input())
+        for _ in range(q):
+            ab = input().split()
 
-    for q_itr in range(q):
-        ab = input().split()
+            a = int(ab[0])
 
-        a = int(ab[0])
+            b = int(ab[1])
 
-        b = int(ab[1])
+            result = squares(a, b)
 
-        result = squares(a, b)
-
-        fptr.write(str(result) + '\n')
-
-    fptr.close()
+            fptr.write(str(result) + '\n')
 

@@ -53,21 +53,21 @@ def main():
  
     keys = ["the", "a", "there", "anaswe", "any", "by", "their"]
     output = ["Not present in trie", "Present in trie"]
- 
+
     t = Trie()
- 
+
     for key in keys:
         t.insert(key)
- 
-    print("{} ---- {}".format("the",output[t.search("the")]))
-    print("{} ---- {}".format("these",output[t.search("these")]))
-    print("{} ---- {}".format("their",output[t.search("their")]))
-    print("{} ---- {}".format("thaw",output[t.search("thaw")]))
-    print("{} ---- {}".format("anaswe",output[t.search("anaswe")]))
+
+    print(f'the ---- {output[t.search("the")]}')
+    print(f'these ---- {output[t.search("these")]}')
+    print(f'their ---- {output[t.search("their")]}')
+    print(f'thaw ---- {output[t.search("thaw")]}')
+    print(f'anaswe ---- {output[t.search("anaswe")]}')
 
     t.delete('anaswe')
 
-    print("{} ---- {}".format("anaswe",output[t.search("anaswe")]))
+    print(f'anaswe ---- {output[t.search("anaswe")]}')
  
 if __name__ == '__main__':
     main()

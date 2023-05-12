@@ -14,11 +14,11 @@ class TreeNode:
 class Solution:
     def isSymmetric(self, root) -> bool:
 
-        if (root.left == None) and (root.right == None):
+        if root.left is None and root.right is None:
             return True
-        elif (root.left == None):
+        elif root.left is None:
             return False
-        elif (root.right == None):
+        elif root.right is None:
             return False
 
         q = queue.Queue()
@@ -29,15 +29,14 @@ class Solution:
             left_root = q.get()
             # print(left_root, right_root)
 
-            if (right_root == None and left_root == None):
+            if right_root is None and left_root is None:
                 continue
-            elif (right_root == None):
+            elif (
+                right_root is None
+                or left_root is None
+                or (right_root.val != left_root.val)
+            ):
                 return False
-            elif (left_root == None):
-                return False
-            elif (right_root.val != left_root.val):
-                return False
-
             q.put(left_root.left)
             q.put(right_root.right)
             q.put(left_root.right)

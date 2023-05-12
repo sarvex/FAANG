@@ -5,16 +5,12 @@ def myPow(x: float, n: int):
         return 1
     elif (x == 0):
         return 0
-    
+
     else:
         if (n < 0):
             return 1 / myPow(x, -n)
-        else:
-            temp = myPow(x, n//2)
-            if (n % 2 == 0):
-                return temp * temp
-            else:
-                return temp * temp * x
+        temp = myPow(x, n//2)
+        return temp * temp if (n % 2 == 0) else temp * temp * x
 
 print(myPow(2.00000, 10))
 # OUTPUT: 1024.0

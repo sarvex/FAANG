@@ -11,7 +11,7 @@ class BinaryTreeTraversals:
     def inorder(self, root):
         # Time Complexity: O(n)
         # # Space Complexity: O(n)
-        if (root == None):
+        if root is None:
             return []
         node_values = []
         node_stack = []
@@ -28,12 +28,11 @@ class BinaryTreeTraversals:
     def preorder(self, root):
         # Time Complexity: O(n)
         # Space Complexity: O(n)
-        if (root == None):
+        if root is None:
             return []
         node_values = []
-        node_stack = []
-        node_stack.append(root)
-        while (len(node_stack) > 0):
+        node_stack = [root]
+        while node_stack:
             top_node = node_stack.pop()
             node_values.append(top_node.val)
             if (top_node.right):
@@ -45,12 +44,11 @@ class BinaryTreeTraversals:
     def postorderTraversal(self, root):
         # Time Complexity: O(n)
         # Space Complexity: O(n)
-        if (root == None):
+        if root is None:
             return []
         node_values = []
-        node_stack = []
-        node_stack.append(root)
-        while (len(node_stack) > 0):
+        node_stack = [root]
+        while node_stack:
             top_node = node_stack.pop()
             node_values.append(top_node.val)
             if (top_node.left):

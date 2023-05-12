@@ -22,8 +22,7 @@ AI_PIECE = 2
 WINDOW_LENGTH = 4
 
 def create_board():
-	board = np.zeros((ROW_COUNT,COLUMN_COUNT))
-	return board
+	return np.zeros((ROW_COUNT,COLUMN_COUNT))
 
 def drop_piece(board, row, col, piece):
 	board[row][col] = piece
@@ -147,8 +146,6 @@ def minimax(board, depth, alpha, beta, maximizingPlayer):
 			alpha = max(alpha, value)
 			if alpha >= beta:
 				break
-		return column, value
-
 	else: # Minimizing player
 		value = math.inf
 		column = random.choice(valid_locations)
@@ -163,14 +160,11 @@ def minimax(board, depth, alpha, beta, maximizingPlayer):
 			beta = min(beta, value)
 			if alpha >= beta:
 				break
-		return column, value
+
+	return column, value
 
 def get_valid_locations(board):
-	valid_locations = []
-	for col in range(COLUMN_COUNT):
-		if is_valid_location(board, col):
-			valid_locations.append(col)
-	return valid_locations
+	return [col for col in range(COLUMN_COUNT) if is_valid_location(board, col)]
 
 def pick_best_move(board, piece):
 
@@ -235,7 +229,7 @@ while not game_over:
 			pygame.draw.rect(screen, BLACK, (0,0, width, SQUARESIZE))
 			posx = event.pos[0]
 			if turn == PLAYER:
-				pygame.draw.circle(screen, RED, (posx, int(SQUARESIZE/2)), RADIUS)
+				pygame.draw.circle(screen, RED, (posx, SQUARESIZE // 2), RADIUS)
 
 		pygame.display.update()
 
@@ -257,14 +251,14 @@ while not game_over:
 						game_over = True
 
 					turn += 1
-					turn = turn % 2
+					turn %= 2
 
 					print_board(board)
 					draw_board(board)
 
 
 	# # Ask for Player 2 Input
-	if turn == AI and not game_over:				
+	if turn == AI and not game_over:			
 
 		#col = random.randint(0, COLUMN_COUNT-1)
 		#col = pick_best_move(board, AI_PIECE)
@@ -284,7 +278,7 @@ while not game_over:
 			draw_board(board)
 
 			turn += 1
-			turn = turn % 2
+			turn %= 2
 
 	if game_over:
 		pygame.time.wait(3000)

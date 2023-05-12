@@ -21,23 +21,18 @@ def minimumDistances(a):
     # Write your code here
     d = []
     for i in range(len(a)):
-        for j in range(i + 1, len(a)):
-            if a[i] == a[j]:
-                d.append(abs(i - j))
-    if len(d) == 0:
+        d.extend(abs(i - j) for j in range(i + 1, len(a)) if a[i] == a[j])
+    if not d:
         return -1
     d.sort()
     return d[0]                
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        n = int(input().strip())
 
-    n = int(input().strip())
+        a = list(map(int, input().rstrip().split()))
 
-    a = list(map(int, input().rstrip().split()))
+        result = minimumDistances(a)
 
-    result = minimumDistances(a)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+        fptr.write(str(result) + '\n')

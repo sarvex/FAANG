@@ -89,7 +89,7 @@ class Login:
                 cur = con.cursor()
                 cur.execute("select * from register2 where email=%s and question=%s and answer=%s", (self.txt_email.get(), self.cmb_quest.get(), self.txt_answer.get()))
                 row = cur.fetchone()
-                if row == None:
+                if row is None:
                     messagebox.showerror("Error", 'Please Select the Correct Security Question / Enter Answer', parent=self.root2)
                 else:
                     cur.execute("update register2 set password=%s where email=%s", (self.txt_new_pass.get(), self.txt_email.get()))
@@ -110,7 +110,7 @@ class Login:
                 cur = con.cursor()
                 cur.execute("select * from register2 where email=%s", self.txt_email.get())
                 row = cur.fetchone()
-                if row == None:
+                if row is None:
                     messagebox.showerror("Error", 'Please enter valid Email to reset your password.', parent=self.root)
                 else:
                     con.close()
@@ -129,12 +129,12 @@ class Login:
                     self.cmb_quest['values']=("Select", "Your Birth Place", "Your Best Friend", "Your Best Book")
                     self.cmb_quest.place(x=50, y=130, width=250)
                     self.cmb_quest.current(0)
-                    
+
                     answer = Label(self.root2, text="Security Answer", font="times 15 bold", bg="white", fg="gray").place(x=50, y=180)
                     self.txt_answer = Entry(self.root2, font="times 15", bg="lightgray")
                     self.txt_answer.place(x=50, y=210, width=250)
 
-                    
+
                     new_pass = Label(self.root2, text="New Password", font="times 15 bold", bg="white", fg="gray").place(x=50, y=260)
                     self.txt_new_pass = Entry(self.root2, font="times 15", bg="lightgray")
                     self.txt_new_pass.place(x=50, y=290, width=250)   
@@ -153,7 +153,7 @@ class Login:
                 cur = con.cursor()
                 cur.execute("select * from register2 where email=%s and password=%s", (self.txt_email.get(), self.txt_pass_.get()))
                 row = cur.fetchone()
-                if row == None:
+                if row is None:
                     messagebox.showerror("Error", 'Invalid USER  &  PASSWORD', parent=self.root)
                 else:
                     messagebox.showinfo("Success", "Welcome", parent=self.root)

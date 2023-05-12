@@ -23,39 +23,30 @@ def dynamicArray(n, queries):
     arr = [[] for _ in range(n)]
     lastAnswer = 0
     answers = []
-    
+
     for i in range(len(queries)):
         
+        x,y = queries[i][1], queries[i][2]
+        idx = (x ^ lastAnswer) % n
         if queries[i][0] == 1:
-            x,y = queries[i][1], queries[i][2]
-            idx = (x ^ lastAnswer) % n
             arr[idx].append(y)
         else:
-            x,y = queries[i][1], queries[i][2]
-            idx = (x ^ lastAnswer) % n
             lastAnswer = arr[idx][y % len(arr[idx])]
             answers.append(lastAnswer)
-            
+
     return answers
         
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        first_multiple_input = input().rstrip().split()
 
-    first_multiple_input = input().rstrip().split()
+        n = int(first_multiple_input[0])
 
-    n = int(first_multiple_input[0])
+        q = int(first_multiple_input[1])
 
-    q = int(first_multiple_input[1])
+        queries = [list(map(int, input().rstrip().split())) for _ in range(q)]
+        result = dynamicArray(n, queries)
 
-    queries = []
-
-    for _ in range(q):
-        queries.append(list(map(int, input().rstrip().split())))
-
-    result = dynamicArray(n, queries)
-
-    fptr.write('\n'.join(map(str, result)))
-    fptr.write('\n')
-
-    fptr.close()
+        fptr.write('\n'.join(map(str, result)))
+        fptr.write('\n')

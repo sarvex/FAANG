@@ -8,7 +8,7 @@ class Calculator:
         return n**p
 myCalculator=Calculator()
 T=int(input())
-for i in range(T):
+for _ in range(T):
     n,p = map(int, input().split())
     try:
         ans=myCalculator.power(n,p)

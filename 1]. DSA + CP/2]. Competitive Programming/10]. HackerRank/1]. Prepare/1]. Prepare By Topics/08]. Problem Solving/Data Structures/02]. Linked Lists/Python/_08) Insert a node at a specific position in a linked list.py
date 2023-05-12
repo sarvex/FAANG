@@ -77,23 +77,20 @@ def insertNodeAtPosition(head, data, position):
     
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        llist_count = int(input())
 
-    llist_count = int(input())
+        llist = SinglyLinkedList()
 
-    llist = SinglyLinkedList()
+        for _ in range(llist_count):
+            llist_item = int(input())
+            llist.insert_node(llist_item)
 
-    for _ in range(llist_count):
-        llist_item = int(input())
-        llist.insert_node(llist_item)
+        data = int(input())
 
-    data = int(input())
+        position = int(input())
 
-    position = int(input())
+        llist_head = insertNodeAtPosition(llist.head, data, position)
 
-    llist_head = insertNodeAtPosition(llist.head, data, position)
-
-    print_singly_linked_list(llist_head, ' ', fptr)
-    fptr.write('\n')
-
-    fptr.close()
+        print_singly_linked_list(llist_head, ' ', fptr)
+        fptr.write('\n')

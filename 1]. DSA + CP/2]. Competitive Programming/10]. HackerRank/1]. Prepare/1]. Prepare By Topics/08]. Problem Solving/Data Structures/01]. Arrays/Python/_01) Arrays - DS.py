@@ -16,18 +16,15 @@ def reverseArray(a):
     return a
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        arr_count = int(input())
 
-    arr_count = int(input())
+        arr = list(map(int, input().rstrip().split()))
 
-    arr = list(map(int, input().rstrip().split()))
+        res = reverseArray(arr)
 
-    res = reverseArray(arr)
-
-    fptr.write(' '.join(map(str, res)))
-    fptr.write('\n')
-
-    fptr.close()
+        fptr.write(' '.join(map(str, res)))
+        fptr.write('\n')
 
 
 

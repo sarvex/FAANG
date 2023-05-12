@@ -33,8 +33,7 @@ def welcomeScreen():
                 pygame.quit()
                 sys.exit()
 
-            # If the user presses space or up key, start the game for them
-            elif event.type == KEYDOWN and (event.key == K_SPACE or event.key == K_UP):
+            elif event.type == KEYDOWN and event.key in [K_SPACE, K_UP]:
                 return
             else:
                 SCREEN.blit(GAME_SPRITES['background'], (0, 0))
@@ -81,18 +80,18 @@ def mainGame():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                 pygame.quit()
                 sys.exit()
-            if event.type == KEYDOWN and (event.key == K_SPACE or event.key == K_UP):
-                if playery > 0:
-                    playerVelY = playerFlapAccv
-                    playerFlapped = True
-                    GAME_SOUNDS['wing'].play()
+            if (
+                event.type == KEYDOWN
+                and event.key in [K_SPACE, K_UP]
+                and playery > 0
+            ):
+                playerVelY = playerFlapAccv
+                playerFlapped = True
+                GAME_SOUNDS['wing'].play()
 
-        crashTest = isCollide(playerx, playery, upperPipes,
-                              lowerPipes)  # This function will return true if the player is crashed
-        if crashTest:
+        if crashTest := isCollide(playerx, playery, upperPipes, lowerPipes):
             return
 
-            # check for score
         playerMidPos = playerx + GAME_SPRITES['player'].get_width() / 2
         for pipe in upperPipes:
             pipeMidPos = pipe['x'] + GAME_SPRITES['pipe'][0].get_width() / 2
@@ -134,9 +133,7 @@ def mainGame():
         SCREEN.blit(GAME_SPRITES['base'], (basex, GROUNDY))
         SCREEN.blit(GAME_SPRITES['player'], (playerx, playery))
         myDigits = [int(x) for x in list(str(score))]
-        width = 0
-        for digit in myDigits:
-            width += GAME_SPRITES['numbers'][digit].get_width()
+        width = sum(GAME_SPRITES['numbers'][digit].get_width() for digit in myDigits)
         Xoffset = (SCREENWIDTH - width) / 2
 
         for digit in myDigits:
@@ -175,11 +172,10 @@ def getRandomPipe():
     y2 = offset + random.randrange(0, int(SCREENHEIGHT - GAME_SPRITES['base'].get_height() - 1.2 * offset))
     pipeX = SCREENWIDTH + 10
     y1 = pipeHeight - y2 + offset
-    pipe = [
+    return [
         {'x': pipeX, 'y': -y1},  # upper Pipe
-        {'x': pipeX, 'y': y2}  # lower Pipe
+        {'x': pipeX, 'y': y2},  # lower Pipe
     ]
-    return pipe
 
 
 if __name__ == "__main__":

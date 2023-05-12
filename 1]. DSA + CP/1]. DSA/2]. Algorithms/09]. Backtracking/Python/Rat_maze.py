@@ -4,24 +4,21 @@ def printSolution( sol ):
      
     for i in sol:
         for j in i:
-            print(str(j) + " ", end ="")
+            print(f"{str(j)} ", end ="")
         print("")
  
 def isSafe( maze, x, y ):
      
-    if x >= 0 and x < N and y >= 0 and y < N and maze[x][y] == 1:
-        return True
-     
-    return False
+    return x >= 0 and x < N and y >= 0 and y < N and maze[x][y] == 1
  
 def solveMaze( maze ):
      
-    sol = [ [ 0 for j in range(4) ] for i in range(4) ]
-     
+    sol = [[0 for _ in range(4)] for _ in range(4)]
+
     if solveMazeUtil(maze, 0, 0, sol) == False:
         print("Solution doesn't exist");
         return False
-     
+
     printSolution(sol)
     return True
      

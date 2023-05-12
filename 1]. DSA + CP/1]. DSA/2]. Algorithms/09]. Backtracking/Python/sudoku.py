@@ -14,16 +14,10 @@ def find_empty_location(arr, l):
     return False
 
 def used_in_row(arr, row, num):
-    for i in range(9):
-        if (arr[row][i] == num):
-            return True
-    return False
+    return any((arr[row][i] == num) for i in range(9))
 
 def used_in_col(arr, col, num):
-    for i in range(9):
-        if (arr[i][col] == num):
-            return True
-    return False
+    return any((arr[i][col] == num) for i in range(9))
 
 def used_in_box(arr, row, col, num):
     for i in range(3):
@@ -62,8 +56,8 @@ def solve_sudoku(arr):
 if __name__=="__main__":
      
     # creating a 2D array for the grid
-    grid =[[0 for x in range(9)]for y in range(9)]
-     
+    grid = [[0 for _ in range(9)] for _ in range(9)]
+
     grid =[[3, 0, 6, 5, 0, 8, 4, 0, 0],
           [5, 2, 0, 0, 0, 0, 0, 0, 0],
           [0, 8, 7, 0, 0, 0, 0, 3, 1],
@@ -73,8 +67,8 @@ if __name__=="__main__":
           [1, 3, 0, 0, 0, 0, 2, 5, 0],
           [0, 0, 0, 0, 0, 0, 0, 7, 4],
           [0, 0, 5, 2, 0, 6, 3, 0, 0]]
-     
-    
+
+
     if(solve_sudoku(grid)):
         print_grid(grid)
     else:

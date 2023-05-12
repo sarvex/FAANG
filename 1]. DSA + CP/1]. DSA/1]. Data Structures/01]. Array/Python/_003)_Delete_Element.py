@@ -11,13 +11,7 @@ def delete(arr, element):
     if element not in arr:
         return "no such element exist in array"
 
-    new_arr = []
-
-    for index in range(len(arr)):
-        if arr[index] != element:
-            new_arr.append(arr[index])
-
-    return new_arr
+    return [arr[index] for index in range(len(arr)) if arr[index] != element]
 
 
 arr = [1, 2, 3, 5]

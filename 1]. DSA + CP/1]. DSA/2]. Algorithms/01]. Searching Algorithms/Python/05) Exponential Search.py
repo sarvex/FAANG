@@ -51,7 +51,7 @@ def verify(index, target):
         print("Target", target, "not in list")
 
 
-array = [x for x in range(1, 51)]
+array = list(range(1, 51))
 print("Input array:", array)
 
 verify(exponential_search(array, 30), 30)

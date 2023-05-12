@@ -27,7 +27,7 @@ class Solution:
                         start = height[i]
                         ans = max(ans, min(start, end) * (j - i))
                         break
-            elif end < start:
+            else:
                 while j > i:
                     j -= 1
                     if height[j] > end:

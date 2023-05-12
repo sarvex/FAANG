@@ -19,14 +19,11 @@ def designerPdfViewer(h, word):
 
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        h = list(map(int, input().rstrip().split()))
 
-    h = list(map(int, input().rstrip().split()))
+        word = input()
 
-    word = input()
+        result = designerPdfViewer(h, word)
 
-    result = designerPdfViewer(h, word)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+        fptr.write(str(result) + '\n')

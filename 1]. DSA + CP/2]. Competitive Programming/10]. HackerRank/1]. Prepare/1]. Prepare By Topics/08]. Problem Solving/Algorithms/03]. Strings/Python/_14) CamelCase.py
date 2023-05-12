@@ -18,19 +18,13 @@ import sys
 #
 
 def camelcase(s):
-    count = 0
-    for i in s:
-        if i.isupper():
-            count += 1
+    count = sum(1 for i in s if i.isupper())
     return count + 1
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        s = input()
 
-    s = input()
+        result = camelcase(s)
 
-    result = camelcase(s)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+        fptr.write(str(result) + '\n')

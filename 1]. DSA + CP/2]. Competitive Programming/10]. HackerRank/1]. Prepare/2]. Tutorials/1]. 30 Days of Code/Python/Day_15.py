@@ -12,9 +12,9 @@ class Solution:
             current = current.next
 
     def insert(self,head,data): 
-        if head==None:
+        if head is None:
             head = Node(data)
-        elif head.next==None:
+        elif head.next is None:
             head.next = Node(data)
         else:
             self.insert(head.next, data)
@@ -24,7 +24,7 @@ class Solution:
 mylist= Solution()
 T=int(input())
 head=None
-for i in range(T):
+for _ in range(T):
     data=int(input())
-    head=mylist.insert(head,data)    
+    head=mylist.insert(head,data)
 mylist.display(head); 	  

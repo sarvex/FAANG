@@ -6,7 +6,7 @@ count = 0
 for i in range(int(input()),int(input()) + 1):
     s = str(i**2)
     x = s[len(s)//2:]
-    y = s[0:len(s)//2]
+    y = s[:len(s)//2]
 
     if x == '':
         x = 0

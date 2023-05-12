@@ -20,7 +20,7 @@ def onMouse(event, x, y, flags, param):
         clicked = True
 
 
-cameraCapture = cv2.VideoCapture(0) 
+cameraCapture = cv2.VideoCapture(0)
 cv2.namedWindow('camera')
 cv2.setMouseCallback('camera', onMouse)
 
@@ -39,7 +39,7 @@ while success and not clicked:
     circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT,
                               1, 50, param1=120, param2=40)
 
-    if not circles is None:
+    if circles is not None:
         circles = np.uint16(np.around(circles))
         max_r, max_i = 0, 0
         for i in range(len(circles[:, :, 2][0])):
@@ -74,13 +74,12 @@ while success and not clicked:
                         print("LEFT")
                     else:
                         print("RIGHT")
+                elif sum(zone_1_color) > sum(zone_0_color) and sum(zone_1_color) > sum(zone_2_color):
+                    print("FORWARD")
+                elif sum(zone_0_color) > sum(zone_2_color):
+                    print("FORWARD AND LEFT")
                 else:
-                    if sum(zone_1_color) > sum(zone_0_color) and sum(zone_1_color) > sum(zone_2_color):
-                        print("FORWARD")
-                    elif sum(zone_0_color) > sum(zone_2_color):
-                        print("FORWARD AND LEFT")
-                    else:
-                        print("FORWARD AND RIGHT")
+                    print("FORWARD AND RIGHT")
             else:
                 print("N/A")
 

@@ -12,10 +12,8 @@ import sys
 
 # Complete the sockMerchant function below.
 def sockMerchant(n, a):
-    flags = []
     count = 0
-    for _ in range(n):
-        flags.append(0)
+    flags = [0 for _ in range(n)]
     for i in range(n):
         for j in range(i+1,n):
             if a[i] == a[j] and (flags[i] != 1 and flags[j] != 1) :
@@ -25,14 +23,11 @@ def sockMerchant(n, a):
     return count
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        n = int(input())
 
-    n = int(input())
+        ar = list(map(int, input().rstrip().split()))
 
-    ar = list(map(int, input().rstrip().split()))
+        result = sockMerchant(n, ar)
 
-    result = sockMerchant(n, ar)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+        fptr.write(str(result) + '\n')

@@ -1,7 +1,7 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         candidates.sort()
-        table = [None] + [set() for i in range(target)]
+        table = [None] + [set() for _ in range(target)]
         for i in candidates:
             if i > target:
                 break

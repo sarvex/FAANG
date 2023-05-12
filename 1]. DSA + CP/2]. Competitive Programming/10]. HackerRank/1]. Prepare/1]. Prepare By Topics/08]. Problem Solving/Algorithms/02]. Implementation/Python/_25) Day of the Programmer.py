@@ -15,7 +15,7 @@ def dayOfProgrammer(year):
     leap = False
     if year < 1918 and year % 4 == 0:
         leap = True
-    elif year < 1918 and year % 4 != 0:
+    elif year < 1918:
         leap = False
     elif year > 1918:
         if year % 4 == 0:
@@ -26,25 +26,24 @@ def dayOfProgrammer(year):
                 leap = False
     else:
         leap = False
-    
-    if leap == False and year < 1918:
-        return "13.09.{}".format(year)
-    elif leap == True and year < 1918:
-        return "12.09.{}".format(year) 
-    elif leap == False and year > 1918:
-        return "13.09.{}".format(year)
-    elif year == 1918:
-        return "26.09.{}".format(year)
+
+    if (
+        not leap
+        and year < 1918
+        or (not leap or year >= 1918)
+        and not leap
+        and year > 1918
+    ):
+        return f"13.09.{year}"
+    elif leap and year < 1918 or year != 1918:
+        return f"12.09.{year}"
     else:
-        return "12.09.{}".format(year)
+        return f"26.09.{year}"
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        year = int(input().strip())
 
-    year = int(input().strip())
+        result = dayOfProgrammer(year)
 
-    result = dayOfProgrammer(year)
-
-    fptr.write(result + '\n')
-
-    fptr.close()
+        fptr.write(result + '\n')

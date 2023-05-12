@@ -17,11 +17,9 @@ def isSafe(board, row, col):
         if board[i][j] == 1:
             return False
 
-    for i, j in zip(range(row, N, 1), range(col, -1, -1)):
-        if board[i][j] == 1:
-            return False
-
-    return True
+    return all(
+        board[i][j] != 1 for i, j in zip(range(row, N, 1), range(col, -1, -1))
+    )
 
 def solveNQUtil(board, col):
     if col>=N:

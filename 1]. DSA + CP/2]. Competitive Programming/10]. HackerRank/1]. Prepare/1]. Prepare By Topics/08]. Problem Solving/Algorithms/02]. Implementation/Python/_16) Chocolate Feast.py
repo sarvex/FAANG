@@ -32,21 +32,18 @@ def chocolateFeast(n, c, m):
     
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        t = int(input().strip())
 
-    t = int(input().strip())
+        for _ in range(t):
+            first_multiple_input = input().rstrip().split()
 
-    for t_itr in range(t):
-        first_multiple_input = input().rstrip().split()
+            n = int(first_multiple_input[0])
 
-        n = int(first_multiple_input[0])
+            c = int(first_multiple_input[1])
 
-        c = int(first_multiple_input[1])
+            m = int(first_multiple_input[2])
 
-        m = int(first_multiple_input[2])
+            result = chocolateFeast(n, c, m)
 
-        result = chocolateFeast(n, c, m)
-
-        fptr.write(str(result) + '\n')
-
-    fptr.close()
+            fptr.write(str(result) + '\n')

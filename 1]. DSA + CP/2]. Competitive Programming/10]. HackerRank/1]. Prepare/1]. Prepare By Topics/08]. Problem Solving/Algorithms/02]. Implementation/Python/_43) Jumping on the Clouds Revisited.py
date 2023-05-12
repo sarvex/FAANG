@@ -19,30 +19,22 @@ def jumpingOnClouds(c, k):
         pos = (pos + k) % n
         #print(energy,pos)
         if pos == 0:
-            if c[pos] == 1:
-                return energy - 3                
-            return energy - 1
+            return energy - 3 if c[pos] == 1 else energy - 1
         else:
-            if c[pos] == 1:
-                energy -= 3
-            else:
-                energy -= 1
+            energy -= 3 if c[pos] == 1 else 1
         if energy == 0:
             break
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        nk = input().split()
 
-    nk = input().split()
+        n = int(nk[0])
 
-    n = int(nk[0])
+        k = int(nk[1])
 
-    k = int(nk[1])
+        c = list(map(int, input().rstrip().split()))
 
-    c = list(map(int, input().rstrip().split()))
+        result = jumpingOnClouds(c, k)
 
-    result = jumpingOnClouds(c, k)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+        fptr.write(str(result) + '\n')

@@ -13,7 +13,7 @@ class TestDataEmptyArray(object):
     
     @staticmethod
     def get_array():
-        return list()
+        return []
 
 class TestDataUniqueValues(object):
 

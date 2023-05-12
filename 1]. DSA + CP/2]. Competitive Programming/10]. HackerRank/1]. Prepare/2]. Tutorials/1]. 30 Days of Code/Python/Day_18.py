@@ -5,8 +5,8 @@ import sys
 
 class Solution:
     def __init__(self):
-        self.mystack = list()
-        self.myqueue = list()
+        self.mystack = []
+        self.myqueue = []
         return None
 
     def pushCharacter(self, char):
@@ -30,20 +30,18 @@ l=len(s)
 for i in range(l):
     obj.pushCharacter(s[i])
     obj.enqueueCharacter(s[i])
-    
-isPalindrome=True
+
 '''
 pop the top character from stack
 dequeue the first character from queue
 compare both the characters
-''' 
-for i in range(l // 2):
-    if obj.popCharacter()!=obj.dequeueCharacter():
-        isPalindrome=False
-        break
+'''
+isPalindrome = all(
+    obj.popCharacter() == obj.dequeueCharacter() for _ in range(l // 2)
+)
 #finally print whether string s is palindrome or not.
 if isPalindrome:
-    print("The word, "+s+", is a palindrome.")
+    print(f"The word, {s}, is a palindrome.")
 else:
-    print("The word, "+s+", is not a palindrome.")    
+    print(f"The word, {s}, is not a palindrome.")    
 

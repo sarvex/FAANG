@@ -15,7 +15,6 @@ class Solution:
         for digit in digits:
             temp=[]
             for result in results:
-                for letter in mapping[digit]:
-                    temp.append(result + [letter])
+                temp.extend(result + [letter] for letter in mapping[digit])
                 results = temp
         return ["".join(result) for result in results]

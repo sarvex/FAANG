@@ -11,20 +11,16 @@ class TreeNode:
 class Solution:
     def compareSubtrees(self, root1, root2):
 
-        if (root1 == None and root2 == None):
+        if root1 is None and root2 is None:
             return True
-        elif (root1 == None):
-            return False
-        elif (root2 == None):
-            return False
-        elif (root1.val != root2.val):
+        elif root1 is None or root2 is None or (root1.val != root2.val):
             return False
         else:
             return self.compareSubtrees(root1.left, root2.right) and self.compareSubtrees(root1.right, root2.left)
 
     def isSymmetric(self, root) -> bool:
 
-        if (root.left == None) and (root.right == None):
+        if root.left is None and root.right is None:
             return True
 
         return self.compareSubtrees(root.left, root.right)

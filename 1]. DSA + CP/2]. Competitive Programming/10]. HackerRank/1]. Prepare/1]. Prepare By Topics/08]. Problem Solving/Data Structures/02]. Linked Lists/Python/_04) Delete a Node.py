@@ -70,21 +70,18 @@ def deleteNode(head, position):
     
     
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        llist_count = int(input())
 
-    llist_count = int(input())
+        llist = SinglyLinkedList()
 
-    llist = SinglyLinkedList()
+        for _ in range(llist_count):
+            llist_item = int(input())
+            llist.insert_node(llist_item)
 
-    for _ in range(llist_count):
-        llist_item = int(input())
-        llist.insert_node(llist_item)
+        position = int(input())
 
-    position = int(input())
+        llist1 = deleteNode(llist.head, position)
 
-    llist1 = deleteNode(llist.head, position)
-
-    print_singly_linked_list(llist1, ' ', fptr)
-    fptr.write('\n')
-
-    fptr.close()
+        print_singly_linked_list(llist1, ' ', fptr)
+        fptr.write('\n')

@@ -39,14 +39,15 @@ click = True
 
 def checker(buttons):
     global click
-    if buttons["text"] == " " and  click == True:
-        buttons["text"] = "X"
-        click = False
-        scorekeeper()
-    elif buttons["text"] == " " and  click == False:
-        buttons["text"] = "O"
-        click = True
-        scorekeeper()
+    if buttons["text"] == " ":
+        if click == True:
+            buttons["text"] = "X"
+            click = False
+            scorekeeper()
+        elif click == False:
+            buttons["text"] = "O"
+            click = True
+            scorekeeper()
 
 
 def scorekeeper():

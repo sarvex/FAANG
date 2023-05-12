@@ -15,10 +15,8 @@ class Solution:
             return []
 
         levels = []
-        new_level = []
-        new_level.append(root)
-
-        while (len(new_level) != 0):
+        new_level = [root]
+        while new_level:
 
             cur_level = list(new_level)  # copy
             cur_level_values = []

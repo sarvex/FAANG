@@ -18,21 +18,18 @@ def saveThePrisoner(n, m, s):
 
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        t = int(input())
 
-    t = int(input())
+        for _ in range(t):
+            nms = input().split()
 
-    for t_itr in range(t):
-        nms = input().split()
+            n = int(nms[0])
 
-        n = int(nms[0])
+            m = int(nms[1])
 
-        m = int(nms[1])
+            s = int(nms[2])
 
-        s = int(nms[2])
+            result = saveThePrisoner(n, m, s)
 
-        result = saveThePrisoner(n, m, s)
-
-        fptr.write(str(result) + '\n')
-
-    fptr.close()
+            fptr.write(str(result) + '\n')

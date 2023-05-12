@@ -13,21 +13,14 @@ import sys
 # Complete the birthdayCakeCandles function below.
 def birthdayCakeCandles(ar):
     m = max(ar)
-    count = 0
-    for i in range(len(ar)):
-        if ar[i] == m:
-            count += 1
-    return count
+    return sum(1 for i in range(len(ar)) if ar[i] == m)
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        ar_count = int(input())
 
-    ar_count = int(input())
+        ar = list(map(int, input().rstrip().split()))
 
-    ar = list(map(int, input().rstrip().split()))
+        result = birthdayCakeCandles(ar)
 
-    result = birthdayCakeCandles(ar)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+        fptr.write(str(result) + '\n')

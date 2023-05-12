@@ -22,19 +22,16 @@ def bigSorting(unsorted):
     return sorted(unsorted,key=len) 
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        n = int(input().strip())
 
-    n = int(input().strip())
+        unsorted = []
 
-    unsorted = []
+        for _ in range(n):
+            unsorted_item = input()
+            unsorted.append(unsorted_item)
 
-    for _ in range(n):
-        unsorted_item = input()
-        unsorted.append(unsorted_item)
+        result = bigSorting(unsorted)
 
-    result = bigSorting(unsorted)
-
-    fptr.write('\n'.join(result))
-    fptr.write('\n')
-
-    fptr.close()
+        fptr.write('\n'.join(result))
+        fptr.write('\n')

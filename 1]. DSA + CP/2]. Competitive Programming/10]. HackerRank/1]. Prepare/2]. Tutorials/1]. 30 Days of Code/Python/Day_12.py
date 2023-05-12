@@ -6,7 +6,7 @@ class Person:
 		self.lastName = lastName
 		self.idNumber = idNumber
 	def printPerson(self):
-		print("Name:", self.lastName + ",", self.firstName)
+		print("Name:", f"{self.lastName},", self.firstName)
 		print("ID:", self.idNumber)
 
 class Student(Person):
@@ -15,23 +15,21 @@ class Student(Person):
         self.scores = scores
 
     def calculate(self):
-        s = 0
-        for score in scores:
-            s += score
-        average = s/len(scores)
+    	s = sum(scores)
+    	average = s/len(scores)
 
-        if average < 40:
-            return 'T'
-        elif average < 55:
-            return 'D'
-        elif average < 70:
-            return 'P'
-        elif average < 80:
-            return 'A'
-        elif average < 90:
-            return 'E'
-        else:
-            return 'O'    
+    	if average < 40:
+    	    return 'T'
+    	elif average < 55:
+    	    return 'D'
+    	elif average < 70:
+    	    return 'P'
+    	elif average < 80:
+    	    return 'A'
+    	elif average < 90:
+    	    return 'E'
+    	else:
+    	    return 'O'    
 
 line = input().split()
 firstName = line[0]

@@ -1,6 +1,6 @@
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
-        store = set([i for i in nums])
+        store = set(list(nums))
         start = 1
         while start in store:
             start+=1

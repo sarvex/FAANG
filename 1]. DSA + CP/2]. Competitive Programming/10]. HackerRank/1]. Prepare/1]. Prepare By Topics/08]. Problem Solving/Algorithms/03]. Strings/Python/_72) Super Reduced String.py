@@ -25,19 +25,16 @@ def superReducedString(s):
             del stringList[i]
             del stringList[i]
             i = 0
-            if len(stringList) == 0:
+            if not stringList:
                 return('Empty String')
         else:
             i += 1
     return "".join(stringList)    
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        s = input()
 
-    s = input()
+        result = superReducedString(s)
 
-    result = superReducedString(s)
-
-    fptr.write(result + '\n')
-
-    fptr.close()
+        fptr.write(result + '\n')

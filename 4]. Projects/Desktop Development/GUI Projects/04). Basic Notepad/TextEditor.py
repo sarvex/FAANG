@@ -447,11 +447,8 @@ def change_theme():
     color_tuple = color_dict.get(chosen_theme)
     fg_color, bg_color = color_tuple[0], color_tuple[1]
     text_editor.config(background=bg_color, fg=fg_color)
-count=0
-for i in color_dict:
+for count, i in enumerate(color_dict):
     color_theme.add_radiobutton(label=i, image=color_icons[count], variable=theme_choice, compound=tk.LEFT, command=change_theme)
-    count += 1
-
 main_application.config(menu=main_menu)
 
 

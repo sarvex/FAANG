@@ -18,32 +18,27 @@ import sys
 #
 
 def funnyString(s):
-    # Find ascii values for string
-    asciiValues = []
-    for i in s:
-        asciiValues.append(ord(i))
-    
-    # Find ascii values for reverse of string (same as reversing the array)
-    asciiValuesReverse = []
-    for i in range(len(asciiValues)):
-        asciiValuesReverse.append(asciiValues[len(asciiValues) - i - 1])
-        
-    # Compare the 2 arrays
-    for i in range(len(s) - 1):
-        if abs(asciiValues[i + 1] - asciiValues[i]) != abs(asciiValuesReverse[i + 1] - asciiValuesReverse[i]):
-            return "Not Funny"
-    return "Funny"
+    asciiValues = [ord(i) for i in s]
+    asciiValuesReverse = [
+        asciiValues[len(asciiValues) - i - 1] for i in range(len(asciiValues))
+    ]
+    return next(
+        (
+            "Not Funny"
+            for i in range(len(s) - 1)
+            if abs(asciiValues[i + 1] - asciiValues[i])
+            != abs(asciiValuesReverse[i + 1] - asciiValuesReverse[i])
+        ),
+        "Funny",
+    )
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        q = int(input().strip())
 
-    q = int(input().strip())
+        for _ in range(q):
+            s = input()
 
-    for q_itr in range(q):
-        s = input()
+            result = funnyString(s)
 
-        result = funnyString(s)
-
-        fptr.write(result + '\n')
-
-    fptr.close()
+            fptr.write(result + '\n')

@@ -4,10 +4,7 @@ class Solution:
     #returns True if strs[0: mid] is a common prefix, false otherwise
     def commonPre(self, strs, mid):
         comp = strs[0][:mid]
-        for i in range(1, len(strs)):
-            if comp != strs[i] [:mid]:
-                return False
-        return True
+        return all(comp == strs[i] [:mid] for i in range(1, len(strs)))
     
     #strs is a list of str
     #returns str which is the largest common prefix

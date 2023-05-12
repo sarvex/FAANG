@@ -2,7 +2,7 @@
 #-------------------------------------------------------------------
 
 class AdvancedArithmetic(object):
-    def divisorSum(n):
+    def divisorSum(self):
         raise NotImplementedError
 
 class Calculator(AdvancedArithmetic):
@@ -13,10 +13,9 @@ class Calculator(AdvancedArithmetic):
             if e == 0:
                 p += i
         return p
-        pass
 
 n = int(input())
 my_calculator = Calculator()
 s = my_calculator.divisorSum(n)
-print("I implemented: " + type(my_calculator).__bases__[0].__name__)
+print(f"I implemented: {type(my_calculator).__bases__[0].__name__}")
 print(s)

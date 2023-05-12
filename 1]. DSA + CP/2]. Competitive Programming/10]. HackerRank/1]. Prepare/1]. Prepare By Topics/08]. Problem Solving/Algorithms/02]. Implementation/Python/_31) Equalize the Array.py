@@ -12,18 +12,15 @@ import sys
 
 # Complete the equalizeArray function below.
 def equalizeArray(arr):
-    return len(arr) - max([arr.count(i) for i in set(arr)])
+    return len(arr) - max(arr.count(i) for i in set(arr))
     
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        n = int(input())
 
-    n = int(input())
+        arr = list(map(int, input().rstrip().split()))
 
-    arr = list(map(int, input().rstrip().split()))
+        result = equalizeArray(arr)
 
-    result = equalizeArray(arr)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+        fptr.write(str(result) + '\n')

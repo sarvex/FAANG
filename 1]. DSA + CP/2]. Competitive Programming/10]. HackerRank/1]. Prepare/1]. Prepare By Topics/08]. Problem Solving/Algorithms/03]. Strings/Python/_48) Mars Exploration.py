@@ -19,20 +19,13 @@ import sys
 
 def marsExploration(s):
     emergencyString = (len(s) // 3) * 'SOS'
-    count = 0
-    for i in range(len(s)):
-        if s[i] != emergencyString[i]:
-            count += 1
-    return count
+    return sum(1 for i in range(len(s)) if s[i] != emergencyString[i])
     
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        s = input()
 
-    s = input()
+        result = marsExploration(s)
 
-    result = marsExploration(s)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+        fptr.write(str(result) + '\n')

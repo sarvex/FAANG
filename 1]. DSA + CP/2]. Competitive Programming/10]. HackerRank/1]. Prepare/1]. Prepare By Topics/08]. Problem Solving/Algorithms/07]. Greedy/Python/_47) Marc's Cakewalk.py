@@ -19,21 +19,15 @@ import sys
 
 def marcsCakewalk(calorie):
     calorie.sort(reverse=True)
-    answer = 0
-    for i in range(len(calorie)):
-        answer += 2**i * calorie[i]
-    return answer
+    return sum(2**i * calorie[i] for i in range(len(calorie)))
     
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        n = int(input().strip())
 
-    n = int(input().strip())
+        calorie = list(map(int, input().rstrip().split()))
 
-    calorie = list(map(int, input().rstrip().split()))
+        result = marcsCakewalk(calorie)
 
-    result = marcsCakewalk(calorie)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+        fptr.write(str(result) + '\n')

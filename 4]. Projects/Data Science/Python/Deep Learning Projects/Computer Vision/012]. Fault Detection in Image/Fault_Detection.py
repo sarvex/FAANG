@@ -28,7 +28,7 @@ while True:
     print("=         TEST Images           =")
     print("======================================")
     for i in files:
-        print('-> {}\t '.format(i), end='')
+        print(f'-> {i}\t ', end='')
         if files.index(i) % 3 == 0 and files.index(i) != 0:
             print('\n')
     print("\n======================================")
@@ -37,10 +37,10 @@ while True:
     file = input("Select a file from the directory(q- quit): ").strip()
 
     # quit program
-    if file == 'q' or file == 'Q':
+    if file in ['q', 'Q']:
         break
 
-    PATH = 'Test images/' + file
+    PATH = f'Test images/{file}'
     # Image Path
     imageOri = cv2.imread(PATH)
 
@@ -55,20 +55,20 @@ while True:
         imageOri = cv2.resize(imageOri, IMAGE_SIZE)
 
         ret, thresh_basic = cv2.threshold(image, THRESHOLD_VALUE, MAX_VALUE, cv2.THRESH_BINARY)
-        
+
         kernel = np.ones((5, 5), np.uint8)
 
         img_erosion = cv2.erode(thresh_basic, kernel, iterations=1)
 
-       
+
         ret, thresh_inv = cv2.threshold(img_erosion, INV_THRESHOLD_VALUE, INV_MAX_VALUE, cv2.THRESH_BINARY_INV)
-       
+
 
         #####################
 
-       
+
         edged = cv2.Canny(img_erosion, THRESHOLD1, THRESHOLD2)
-       
+
         contours, hierarchy = cv2.findContours(thresh_inv, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
         font = cv2.FONT_HERSHEY_SIMPLEX
@@ -93,9 +93,9 @@ while True:
 
         cv2.imshow('Filtering...', numpy_horizontal_concat)
 
-        
+
         num_of_con = str(len(contours) - 1)
-        print("Number of Contours found = " + num_of_con)
+        print(f"Number of Contours found = {num_of_con}")
         if len(contours) > 1:
             print('======================================')
             print('=       ERRORS DETECTED            =')
@@ -108,9 +108,16 @@ while True:
             for i in range(int(num_of_con)):
                 highlighted_img = cv2.drawContours(imageOri, contours, i, CON_COLOR, CON_THICKNESS)
 
-            highlighted_img = cv2.putText(highlighted_img, 'Approximately {} defect(s) detected'.
-                                          format(num_of_con), (5, 15),
-                                          font, 0.5, GREEN, 1, cv2.LINE_AA)
+            highlighted_img = cv2.putText(
+                highlighted_img,
+                f'Approximately {num_of_con} defect(s) detected',
+                (5, 15),
+                font,
+                0.5,
+                GREEN,
+                1,
+                cv2.LINE_AA,
+            )
         else:
             highlighted_img = cv2.putText(imageOri, 'Unable to detect defects!',
                                           (5, 15), font, 0.5, RED, 2, cv2.LINE_AA)
@@ -118,6 +125,9 @@ while True:
         # show markings highlighted img
         cv2.imshow('Highlighted Defect', highlighted_img)
         # save image containing highlighted defect
-        cv2.imwrite('Output Images/{}_DEFECTS_HIGHLIGHTED.jpg'.format(file.split('.')[0]), highlighted_img)
+        cv2.imwrite(
+            f"Output Images/{file.split('.')[0]}_DEFECTS_HIGHLIGHTED.jpg",
+            highlighted_img,
+        )
         cv2.waitKey(0)
         cv2.destroyAllWindows()

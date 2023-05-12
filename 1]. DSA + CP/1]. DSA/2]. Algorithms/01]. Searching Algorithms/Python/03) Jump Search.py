@@ -13,9 +13,7 @@ def jump_search(array, target):
     step_end = step
 
     while step_start < array_len:
-        if step_end > array_len:
-            step_end = array_len
-
+        step_end = min(step_end, array_len)
         if step_end > target:
             for index in range(step_start, step_end):
                 if array[index] == target:
@@ -34,7 +32,7 @@ def verify(index, target):
         print("Target", target, "not in list")
 
 
-array = [x for x in range(1, 51)]
+array = list(range(1, 51))
 print("Input array:", array)
 
 verify(jump_search(array, 30), 30)

@@ -23,10 +23,8 @@ def negative_to_front(arr):
     while mid < len(arr):
         if arr[mid] < 0:
             arr[mid], arr[low] = arr[low], arr[mid]
-            mid += 1
             low += 1
-        else:
-            mid += 1
+        mid += 1
     return arr
 
 

@@ -5,7 +5,7 @@ class Solution:
             new = set()
             for s in ans:
                 for i in range(len(s)):
-                    a = s[:i] + '()' + s[i:]
+                    a = f'{s[:i]}(){s[i:]}'
                     new.add(a)
             ans = list(new)
         return ans

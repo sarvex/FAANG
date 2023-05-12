@@ -12,23 +12,20 @@ import sys
 
 # Complete the alternatingCharacters function below.
 def alternatingCharacters(s):
-    count = 0
-    for i in range(len(s) - 1):
-        if (s[i] == 'A' and s[i + 1] == 'B') or  (s[i] == 'B' and s[i + 1] == 'A'):
-            continue
-        count += 1
-    return count
+    return sum(
+        1
+        for i in range(len(s) - 1)
+        if (s[i] != 'A' or s[i + 1] != 'B')
+        and (s[i] != 'B' or s[i + 1] != 'A')
+    )
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        q = int(input())
 
-    q = int(input())
+        for _ in range(q):
+            s = input()
 
-    for q_itr in range(q):
-        s = input()
+            result = alternatingCharacters(s)
 
-        result = alternatingCharacters(s)
-
-        fptr.write(str(result) + '\n')
-
-    fptr.close()
+            fptr.write(str(result) + '\n')

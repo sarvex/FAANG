@@ -236,7 +236,9 @@ class Student():
         con = pymysql.connect(host="localhost", user="root", password="", database="student_system")
         cur = con.cursor()
         try:
-            cur.execute("select * from students where " + str(self.search_by.get()) + " LIKE '%"  + str(self.search_txt.get()) + "%'")
+            cur.execute(
+                f"select * from students where {str(self.search_by.get())} LIKE '%{str(self.search_txt.get())}%'"
+            )
             rows = cur.fetchall()
             if len(rows)!=0:
                 self.Student_table.delete(*self.Student_table.get_children())

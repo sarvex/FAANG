@@ -66,7 +66,7 @@ def reversePrint(head):
 if __name__ == '__main__':
     tests = int(input())
 
-    for tests_itr in range(tests):
+    for _ in range(tests):
         llist_count = int(input())
 
         llist = SinglyLinkedList()

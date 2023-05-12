@@ -28,20 +28,17 @@ def icecreamParlor(m, arr):
             d[arr[i]] = i + 1
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        t = int(input().strip())
 
-    t = int(input().strip())
+        for _ in range(t):
+            m = int(input().strip())
 
-    for t_itr in range(t):
-        m = int(input().strip())
+            n = int(input().strip())
 
-        n = int(input().strip())
+            arr = list(map(int, input().rstrip().split()))
 
-        arr = list(map(int, input().rstrip().split()))
+            result = icecreamParlor(m, arr)
 
-        result = icecreamParlor(m, arr)
-
-        fptr.write(' '.join(map(str, result)))
-        fptr.write('\n')
-
-    fptr.close()
+            fptr.write(' '.join(map(str, result)))
+            fptr.write('\n')

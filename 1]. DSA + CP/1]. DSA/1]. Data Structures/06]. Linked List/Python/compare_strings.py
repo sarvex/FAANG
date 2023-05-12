@@ -5,16 +5,13 @@ def compare(list1, list2):
         list1 = list1.next
         list2 = list2.next
 
-    if list1 and list2:
-        return 1 if list1.data > list2.data else -1
-    
-    if list1 and not list2:
-        return 1
-    
-    if list2 and not list1:
-        return -1
+    if list1:
+        if list2:
+            return 1 if list1.data > list2.data else -1
 
-    return 0
+        return 1
+
+    return -1 if list2 else 0
                 
 list1 = node('g')
 list1.next = node('e')

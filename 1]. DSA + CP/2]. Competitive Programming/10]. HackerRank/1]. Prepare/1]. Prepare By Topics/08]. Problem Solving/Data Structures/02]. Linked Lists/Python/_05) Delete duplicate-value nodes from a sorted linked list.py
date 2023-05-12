@@ -67,22 +67,19 @@ def removeDuplicates(head):
     
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        t = int(input())
 
-    t = int(input())
+        for _ in range(t):
+            llist_count = int(input())
 
-    for t_itr in range(t):
-        llist_count = int(input())
+            llist = SinglyLinkedList()
 
-        llist = SinglyLinkedList()
+            for _ in range(llist_count):
+                llist_item = int(input())
+                llist.insert_node(llist_item)
 
-        for _ in range(llist_count):
-            llist_item = int(input())
-            llist.insert_node(llist_item)
+            llist1 = removeDuplicates(llist.head)
 
-        llist1 = removeDuplicates(llist.head)
-
-        print_singly_linked_list(llist1, ' ', fptr)
-        fptr.write('\n')
-
-    fptr.close()
+            print_singly_linked_list(llist1, ' ', fptr)
+            fptr.write('\n')

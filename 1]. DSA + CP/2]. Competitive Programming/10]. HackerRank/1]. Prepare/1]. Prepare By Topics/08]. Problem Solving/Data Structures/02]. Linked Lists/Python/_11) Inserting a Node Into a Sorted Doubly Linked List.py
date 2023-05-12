@@ -90,24 +90,21 @@ def sortedInsert(head, data):
         
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        t = int(input())
 
-    t = int(input())
+        for _ in range(t):
+            llist_count = int(input())
 
-    for t_itr in range(t):
-        llist_count = int(input())
+            llist = DoublyLinkedList()
 
-        llist = DoublyLinkedList()
+            for _ in range(llist_count):
+                llist_item = int(input())
+                llist.insert_node(llist_item)
 
-        for _ in range(llist_count):
-            llist_item = int(input())
-            llist.insert_node(llist_item)
+            data = int(input())
 
-        data = int(input())
+            llist1 = sortedInsert(llist.head, data)
 
-        llist1 = sortedInsert(llist.head, data)
-
-        print_doubly_linked_list(llist1, ' ', fptr)
-        fptr.write('\n')
-
-    fptr.close()
+            print_doubly_linked_list(llist1, ' ', fptr)
+            fptr.write('\n')

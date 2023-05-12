@@ -7,15 +7,14 @@ class Node:
         self.data = data
 class Solution:
     def insert(self,root,data):
-        if root==None:
+        if root is None:
             return Node(data)
+        if data<=root.data:
+            cur=self.insert(root.left,data)
+            root.left=cur
         else:
-            if data<=root.data:
-                cur=self.insert(root.left,data)
-                root.left=cur
-            else:
-                cur=self.insert(root.right,data)
-                root.right=cur
+            cur=self.insert(root.right,data)
+            root.right=cur
         return root
 
     def getHeight(self,root):
@@ -24,18 +23,14 @@ class Solution:
             leftDepth = self.getHeight(root.left)
             rightDepth = self.getHeight(root.right)
 
-            if leftDepth > rightDepth:
-                return leftDepth + 1
-            else:
-                return rightDepth + 1
-
+            return leftDepth + 1 if leftDepth > rightDepth else rightDepth + 1
         else:
             return -1
 
 T=int(input())
 myTree=Solution()
 root=None
-for i in range(T):
+for _ in range(T):
     data=int(input())
     root=myTree.insert(root,data)
 height=myTree.getHeight(root)

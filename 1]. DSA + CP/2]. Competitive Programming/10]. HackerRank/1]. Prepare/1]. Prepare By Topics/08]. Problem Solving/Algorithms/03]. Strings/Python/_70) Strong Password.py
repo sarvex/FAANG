@@ -13,28 +13,25 @@ import sys
 # Complete the minimumNumber function below.
 def minimumNumber(n, password):
     # Return the minimum number of characters to make the password strong
-    
+
     count = 0
-    if any(i.isdigit() for i in password) == False:
+    if not any(i.isdigit() for i in password):
         count += 1
-    if any(i.isupper() for i in password) == False:
+    if not any(i.isupper() for i in password):
         count += 1
-    if any(i.islower() for i in password) == False:
+    if not any(i.islower() for i in password):
         count += 1
-    if any(i in "!@#$%^&*()-+" for i in password) == False:
-        count += 1    
+    if all(i not in "!@#$%^&*()-+" for i in password):
+        count += 1
     return max(count,6 - n)
 
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        n = int(input())
 
-    n = int(input())
+        password = input()
 
-    password = input()
+        answer = minimumNumber(n, password)
 
-    answer = minimumNumber(n, password)
-
-    fptr.write(str(answer) + '\n')
-
-    fptr.close()
+        fptr.write(str(answer) + '\n')

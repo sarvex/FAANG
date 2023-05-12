@@ -25,16 +25,13 @@ def introTutorial(V, arr):
             return i
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        V = int(input().strip())
 
-    V = int(input().strip())
+        n = int(input().strip())
 
-    n = int(input().strip())
+        arr = list(map(int, input().rstrip().split()))
 
-    arr = list(map(int, input().rstrip().split()))
+        result = introTutorial(V, arr)
 
-    result = introTutorial(V, arr)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+        fptr.write(str(result) + '\n')

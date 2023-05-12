@@ -4,7 +4,7 @@ class newClass(linkedList):
     def insert(self, list1, list2, k):
         first = list1.head
         second = list2.head
-        for i in range(k-1):
+        for _ in range(k-1):
             first = first.next
         next = first.next
         while second:

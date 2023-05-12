@@ -24,15 +24,12 @@ def findDigits(n):
     return count
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        t = int(input())
 
-    t = int(input())
+        for _ in range(t):
+            n = int(input())
 
-    for t_itr in range(t):
-        n = int(input())
+            result = findDigits(n)
 
-        result = findDigits(n)
-
-        fptr.write(str(result) + '\n')
-
-    fptr.close()
+            fptr.write(str(result) + '\n')

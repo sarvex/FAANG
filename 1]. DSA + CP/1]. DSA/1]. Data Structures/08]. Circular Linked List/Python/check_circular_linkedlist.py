@@ -4,7 +4,7 @@ def Circular(head):
     current = head
     if head is None:
         return True
-    while current.next != None and current.next != head:
+    while current.next not in [None, head]:
         current = current.next
 
     return (current.next == head)

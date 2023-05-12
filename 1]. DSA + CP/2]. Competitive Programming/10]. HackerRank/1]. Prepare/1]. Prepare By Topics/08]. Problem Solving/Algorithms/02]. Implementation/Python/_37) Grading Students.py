@@ -28,19 +28,16 @@ def gradingStudents(grades):
     return grades
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        grades_count = int(input().strip())
 
-    grades_count = int(input().strip())
+        grades = []
 
-    grades = []
+        for _ in range(grades_count):
+            grades_item = int(input().strip())
+            grades.append(grades_item)
 
-    for _ in range(grades_count):
-        grades_item = int(input().strip())
-        grades.append(grades_item)
+        result = gradingStudents(grades)
 
-    result = gradingStudents(grades)
-
-    fptr.write('\n'.join(map(str, result)))
-    fptr.write('\n')
-
-    fptr.close()
+        fptr.write('\n'.join(map(str, result)))
+        fptr.write('\n')

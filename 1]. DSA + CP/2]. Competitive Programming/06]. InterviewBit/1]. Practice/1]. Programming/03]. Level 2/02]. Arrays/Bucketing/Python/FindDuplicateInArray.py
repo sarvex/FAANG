@@ -4,7 +4,4 @@ class Solution:
     # @return an integer
     def repeatedNumber(self, A):
         c=Counter(A)
-        for i in c:
-            if(c[i]>1):
-                return i
-        return -1
+        return next((i for i, value in c.items() if value > 1), -1)

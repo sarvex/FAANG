@@ -23,19 +23,13 @@ def pangrams(s):
         if i.isalpha():
             index = ord(i.lower()) - ord('a')
             alphabets[index] += 1
-    
-    for i in alphabets:
-        if i == 0:
-            return "not pangram"
-    return "pangram"
+
+    return next(("not pangram" for i in alphabets if i == 0), "pangram")
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    with open(os.environ['OUTPUT_PATH'], 'w') as fptr:
+        s = input()
 
-    s = input()
+        result = pangrams(s)
 
-    result = pangrams(s)
-
-    fptr.write(result + '\n')
-
-    fptr.close()
+        fptr.write(result + '\n')

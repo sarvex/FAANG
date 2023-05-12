@@ -23,6 +23,4 @@ class Solution:
                         cnts.pop()
         if dividend > 0 and divisor < 0 or dividend < 0 and divisor > 0:
             ans = -ans
-        if ans < -(2**31) or ans > 2**31 - 1:
-            return 2**31 - 1
-        return ans
+        return 2**31 - 1 if ans < -(2**31) or ans > 2**31 - 1 else ans
